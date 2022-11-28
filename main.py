@@ -25,4 +25,18 @@ def validity(sudoku,sol,r,c):
 
     return True
 
+def solve_sudoku(sudoku):
+    r,c = empty_finder(sudoku)
+    if r is None:
+        return True
+    for sol in range(1,10):
+        if validity(sudoku,sol,r,c):
+            sudoku[r][c]=sol
+            if solve_sudoku(sudoku):
+                return True
+
+        sudoku[r][c]= -1
+    return False
+
+
 
